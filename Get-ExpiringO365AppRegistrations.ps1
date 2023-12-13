@@ -1,7 +1,7 @@
 ﻿$ConfigFile = '.\O365Monitor-Config.xml'
 $ConfigParams = [xml](get-content $ConfigFile)
 
-$LogFile = '.\O365Montior.csv'
+$LogFile = '.\O365Montior-ExpiringCerts.csv'
 
 # Initialize configuration variables from config xml file
 $TenantID = $ConfigParams.o365app.tenantid.value
