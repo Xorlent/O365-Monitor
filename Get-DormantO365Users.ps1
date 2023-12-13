@@ -1,7 +1,7 @@
 ﻿$ConfigFile = '.\O365Monitor-Config.xml'
 $ConfigParams = [xml](get-content $ConfigFile)
 
-$LogFile = '.\O365Montior-Dormant.csv'
+$LogFile = '.\O365Montior-DormantUsers.csv'
 
 # Initialize configuration variables from config xml file
 $TenantID = $ConfigParams.o365app.tenantid.value
