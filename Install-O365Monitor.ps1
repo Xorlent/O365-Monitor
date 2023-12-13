@@ -22,6 +22,7 @@ Param(
    [Switch]$Force
 )
 
+$ConfigFile = '.\O365Monitor-Config.xml'
 $CommonName = 'O365Monitor'
 $StartDate = (Get-Date).ToString("yyyy-MM-dd")
 $EndDate = (Get-Date).AddDays(385).ToString("yyyy-MM-dd")
@@ -234,6 +235,20 @@ ConnectMgGraphModule
 RegisterApplication
 UploadCertificate
 GrantPermission
+
+# If the config file exists, rename it first.
+if (Test-Path -Path $ConfigFile -PathType Leaf){
+    Remove-Item -Path ".\$ConfigFile.bak" -Force | Out-Null
+    Rename-Item -Path $ConfigFile -NewName "$ConfigFile.bak"
+    }
+
+# Save the the TenantID and ApplicationID configuration values to XML file
+$xml = New-Object System.Xml.XmlDocument
+$xml.AppendChild($xml.CreateXmlDeclaration("1.0", "UTF-8", $null))
+$root = $xml.AppendChild($xml.CreateElement("o365app"))
+$root.AppendChild($xml.CreateElement("tenantid")).InnerText = $TenantID
+$root.AppendChild($xml.CreateElement("appid")).InnerText = $APPObjectID
+$xml.Save($ConfigFile)
 
 Write-Output "Setup Complete.  Next step, configure certificate private key permissions for your O365 Monitor service account."
 Write-Output "Details here: https://github.com/Xorlent/O365-Monitor"
