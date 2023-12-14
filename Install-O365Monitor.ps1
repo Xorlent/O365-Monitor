@@ -235,6 +235,7 @@ ConnectMgGraphModule
 RegisterApplication
 UploadCertificate
 GrantPermission
+Disconnect-MgGraph | Out-Null
 
 # If the config file exists, rename it first.
 if (Test-Path -Path $ConfigFile -PathType Leaf){
