@@ -1,13 +1,15 @@
 ﻿$ConfigFile = '.\O365Monitor-Config.xml'
-$ConfigParams = [xml](get-content $ConfigFile)
+$xml = New-Object System.Xml.XmlDocument
+$xml.Load($ConfigFile)
+$ConfigParams = $xml.SelectSingleNode("//o365app")
 
-$LogFile = '.\O365Montior-DormantUsers.csv'
+$LogFile = '.\O365Montior-DormantAccounts.csv'
 
 # Initialize configuration variables from config xml file
-$TenantID = $ConfigParams.o365app.tenantid.value
-$APPObjectID = $ConfigParams.o365app.appid.value
+$TenantID = $ConfigParams.SelectSingleNode("tenantid").InnerText
+$APPObjectID = $ConfigParams.SelectSingleNode("appid").InnerText
 
-Connect-MgGraph -ClientID $APPObjectID -TenantId $TenantID -CertificateName "CN=O365Monitor" -ErrorAction SilentlyContinue -Errorvariable ConnectionError | Out-Null
+Connect-MgGraph -ClientId $APPObjectID -TenantId $TenantID -CertificateName "CN=O365Monitor" -ErrorAction SilentlyContinue -Errorvariable ConnectionError | Out-Null
 
 if($ConnectionError -ne $null)
     {
@@ -19,6 +21,7 @@ if (Test-Path -Path $LogFile -PathType Leaf){
     rm $LogFile
 }
 
+$NotificationFlag = 0
 $Headers = '"Last Sign-In","Display Name","User Principal Name"'
 $UserList = Get-MgUser -Filter 'accountEnabled eq true' -All
 
@@ -30,11 +33,20 @@ foreach ($User in $UserList)
     $UserName = $User.DisplayName
     $UserEmail = $User.UserPrincipalName
     $LastLogin = Get-MgUser -UserId $UserID -Property 'SignInActivity'
-
+    Write-Host -NoNewLine "."
     if($LastLogin.SignInActivity.LastSignInDateTime -lt (Get-Date).AddDays(-45)){
         $Entry = '"' + $LastLogin.SignInActivity.LastSignInDateTime + '","' + $UserName + '","' + $UserEmail + '"'
         Add-Content $LogFile $Entry
+        Write-Host -NoNewLine "!"
+        $NotificationFlag++
     }
 }
 
-Disconnect-MgGraph
+if($NotificationFlag){
+    Write-Output "Results can be found in $LogFile"
+}
+else{
+    Write-Output "No dormant accounts found."
+}
+
+Disconnect-MgGraph | Out-Null

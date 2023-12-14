@@ -1,13 +1,15 @@
 ﻿$ConfigFile = '.\O365Monitor-Config.xml'
-$ConfigParams = [xml](get-content $ConfigFile)
+$xml = New-Object System.Xml.XmlDocument
+$xml.Load($ConfigFile)
+$ConfigParams = $xml.SelectSingleNode("//o365app")
 
-$LogFile = '.\O365Montior-ExpiringCerts.csv'
+$LogFile = '.\O365Montior-ExpiringCerts.txt'
 
 # Initialize configuration variables from config xml file
-$TenantID = $ConfigParams.o365app.tenantid.value
-$APPObjectID = $ConfigParams.o365app.appid.value
+$TenantID = $ConfigParams.SelectSingleNode("tenantid").InnerText
+$APPObjectID = $ConfigParams.SelectSingleNode("appid").InnerText
 
-Connect-MgGraph -ClientID $APPObjectID -TenantId $TenantID -CertificateName "CN=O365Monitor" -ErrorAction SilentlyContinue -Errorvariable ConnectionError | Out-Null
+Connect-MgGraph -ClientId $APPObjectID -TenantId $TenantID -CertificateName "CN=O365Monitor" -ErrorAction SilentlyContinue -Errorvariable ConnectionError | Out-Null
 
 if($ConnectionError -ne $null)
     {
@@ -76,6 +78,10 @@ foreach ($App in $Applications) {
 
 if($NotificationFlag){
     $Logs | Out-File -FilePath $LogFile
-    }
+    Write-Output "Results can be found in $LogFile"
+}
+else{
+    Write-Output "No secrets or certificates expiring in the next 45 days."
+}
 
-Disconnect-MgGraph
+Disconnect-MgGraph | Out-Null
