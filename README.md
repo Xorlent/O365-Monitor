@@ -42,7 +42,7 @@ Office365 Hygiene and Account Monitoring Scripts
     - Get-DormantO365Accounts.ps1 : Generates O365Montior-DormantAccounts.csv listing any enabled accounts that have been dormant for 45 days
       - This one is great for identifying and purging old external share accounts
 
-### The script stopped running after a year
+### The scripts stopped running after about a year!
   - Follow the Setup and Configuration steps, but instead of running Install-O365Monitor.ps1, run Renew-O365MonitorCert.ps1
   - The newly generated certificate will be valid for 385 days
 
