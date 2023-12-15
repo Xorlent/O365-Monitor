@@ -1,5 +1,5 @@
-# O365-Monitor
-Office365 Hygiene and Account Monitoring Tool
+# O365 Monitor
+Office365 Hygiene and Account Monitoring Scripts
 
 ### Installation Prerequisites
   - An Office 365 account with an administrative role that has access to create and edit Enterprise Apps
