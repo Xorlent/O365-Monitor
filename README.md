@@ -37,8 +37,9 @@ Office365 Hygiene and Account Monitoring Scripts
   - Open a PowerShell command prompt
   - Navigate to the location of the O365 Monitor scripts
   - Execute the desired script
-    - Get-ExpiringO365AppRegistrations.ps1 : Outputs a file with any secrets or certificates that are expiring in the next 45 days
-    - Get-DormantO365Accounts.ps1 : Outputs a file with any enabled accounts that have been dormant for 45 days (great for identifying and purging old external accounts!)
+    - Get-ExpiringO365AppRegistrations.ps1 : Generates O365Montior-DormantAccounts.csv with any secrets or certificates that are expiring in the next 45 days
+    - Get-DormantO365Accounts.ps1 : Generates O365Montior-ExpiringCerts.txt with any enabled accounts that have been dormant for 45 days
+      - This one is great for identifying and purging old external share accounts
 
 ### The script stopped running after a year
   - Follow the Setup and Configuration steps, but instead of running Install-O365Monitor.ps1, run Renew-O365MonitorCert.ps1
