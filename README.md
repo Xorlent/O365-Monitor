@@ -4,6 +4,7 @@ Office365 Hygiene and Account Monitoring Scripts
 ### Installation Prerequisites
   - An Office 365 account with an administrative role that has access to create and edit Enterprise Apps
   - Administrative access on a Windows computer
+  - Note: The setup routine creates an Enterprise App with the absolute minimum (and read-only) rights to your O365 environment
 
 ### Setup
   - Download the latest release ZIP
