@@ -32,17 +32,16 @@ Office365 Hygiene and Account Monitoring Tool
   - Select only the "Read" right as shown in the image below with example user "OTHER"
 ![alt text](https://github.com/Xorlent/O365-Monitor/blob/1d84c5880f7efc114cf16b1ffc0b5d5100c84dd7/PrivateCertPermissions2.png "Certificate Permissions")
 
+### Running the scripts
+  - The scripts are designed to be run interactively, but I may enhance and further develop more functionality that would facilitate automated execution and notifications
+  - Open a PowerShell command prompt
+  - Navigate to the location of the O365 Monitor scripts
+  - Execute the desired script
+    - Get-ExpiringO365AppRegistrations.ps1 : Outputs a file with any secrets or certificates that are expiring in the next 45 days
+    - Get-DormantO365Accounts.ps1 : Outputs a file with any enabled accounts that have been dormant for 45 days (great for identifying and purging old external accounts!)
 
-### Reading the report
-  - After a completed run, find the CSV file and open with your favorite editor
-  - Column 1 indicates whether the tool remediated the vulnerability or not
-
-
-
-
-
-
-
-
+### The script stopped running after a year
+  - Follow the Setup and Configuration steps, but instead of running Install-O365Monitor.ps1, run Renew-O365MonitorCert.ps1
+  - The newly generated certificate will be valid for 385 days
 
 Many thanks to [Erik de Bont](https://github.com/erik-de-bont) and AdminDroid ([Twitter](https://twitter.com/admiindroid)|[Facebook](https://www.facebook.com/admindroid)|[LinkedIn](https://www.linkedin.com/company/admindroid/)) for good portions of the scripts.
