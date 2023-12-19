@@ -32,8 +32,8 @@ Office365 Hygiene and Account Monitoring Scripts
   - Select only the "Read" right as shown in the image below with example user "OTHER"
 ![alt text](https://github.com/Xorlent/O365-Monitor/blob/1d84c5880f7efc114cf16b1ffc0b5d5100c84dd7/PrivateCertPermissions2.png "Certificate Permissions")
 
-### Running the scripts
-  - The scripts are designed to be run interactively, but I may enhance and further develop more functionality that would facilitate automated execution and notifications
+### Running the scripts  
+The scripts are designed to be run interactively, but I may enhance and further develop more functionality that would facilitate automated execution and notifications
   - Open a PowerShell command prompt
   - Navigate to the location of the O365 Monitor scripts
   - Execute the desired script
