@@ -41,6 +41,8 @@ The scripts are designed to be run interactively, but I may enhance and further 
       - A quick and easy way to identify secrets and app certificates that need to be renewed BEFORE they expire
     - Get-DormantO365Accounts.ps1 : Generates O365Montior-DormantAccounts.csv listing any enabled accounts that have been dormant for 45 days
       - This one is great for identifying and purging old external share accounts
+    - Fix-PublicM365Groups.ps1 : Automatically remediates user-created public M365 groups
+      - Microsoft does not allow configuration of private-only user-created M365 groups.  This script helps keep users in check.
 
 ### The scripts stopped running after about a year!
   - Follow the Setup and Configuration steps, but instead of running Install-O365Monitor.ps1, run Renew-O365MonitorCert.ps1
