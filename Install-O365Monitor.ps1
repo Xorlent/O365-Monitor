@@ -22,7 +22,7 @@ Param(
    [Switch]$Force
 )
 
-$ConfigFile = '.\O365Monitor-Config.xml'
+$ConfigFile = $PWD.Path + '\O365Monitor-Config.xml'
 $CommonName = 'O365Monitor'
 $StartDate = (Get-Date).ToString("yyyy-MM-dd")
 $EndDate = (Get-Date).AddDays(385).ToString("yyyy-MM-dd")
@@ -135,6 +135,10 @@ function RegisterApplication
                      }
                     @{
                         Id = "b0afded3-3588-46d8-8b3d-9842eff778da" #AuditLog.Read.All
+                        Type = "Role"                               #Role -> Application permission
+                     }
+                    @{
+                        Id = "62a82d76-70ea-41e2-9197-370581804d09" #Group.ReadWrite.All
                         Type = "Role"                               #Role -> Application permission
                      }
                     )
