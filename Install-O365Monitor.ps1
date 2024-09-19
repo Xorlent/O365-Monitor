@@ -86,6 +86,7 @@ Function ConnectMgGraphModule
     if($MsGraphModule -eq $null)
     { 
         Write-host "Important: Microsoft graph module is unavailable. It is mandatory to have this module installed in the system to run the script successfully." 
+        Write-host 'If completion hangs or fails, please manually run "Update-Module" in a PowerShell window to first update prerequisite components.' -ForegroundColor Yellow
         $confirm = Read-Host Are you sure you want to install Microsoft graph module? [Y] Yes [N] No  
         if($confirm -match "[yY]") 
         { 
