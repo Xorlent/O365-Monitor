@@ -1,9 +1,9 @@
-﻿$ConfigFile = '.\O365Monitor-Config.xml'
+﻿$ConfigFile = "$PSScriptRoot\O365Monitor-Config.xml"
 $xml = New-Object System.Xml.XmlDocument
 $xml.Load($ConfigFile)
 $ConfigParams = $xml.SelectSingleNode("//o365app")
 
-$LogFile = '.\O365Montior-ExpiringCerts.txt'
+$LogFile = "$PSScriptRoot\O365Montior-ExpiringCerts.txt"
 
 # Initialize configuration variables from config xml file
 $TenantID = $ConfigParams.SelectSingleNode("tenantid").InnerText
