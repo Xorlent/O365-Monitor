@@ -14,6 +14,8 @@ Office365 Hygiene and Account Monitoring Scripts
   - Open an Administrator Powershell window
   - Navigate to the location of the O365 Monitor scripts
   - Run Install-O365Monitor.ps1
+    - If Microsoft Graph prerequisites are required, you will be prompted to allow an untrusted repository, 'PSGallery.'  This is Microsoft's default [PowerShell repo.](https://learn.microsoft.com/en-us/powershell/gallery/getting-started?view=powershellget-3.x)
+    - If prerequisites were required, it can take up to 10 minutes for the script to complete the install process before the O365 Monitor install script continues.  Be patient!
     - During the installation, the tool will prompt for Office 365 administrative credentials.  These are only used in the current session to set up and configure the "O365 Monitor" enterprise app.
   - With the installation is complete, you can close the PowerShell window
 
