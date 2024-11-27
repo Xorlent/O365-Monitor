@@ -131,7 +131,7 @@ function RegisterApplication
                         Type = "Role"                               #Role -> Application permission
                      }
                     @{
-                        Id = "a154be20-db9c-4678-8ab7-66f6cc099a59" #User.Read.All
+                        Id = "df021288-bdef-4463-88db-98f22de89214" #User.Read.All
                         Type = "Role"                               #Role -> Application permission
                      }
                     @{
