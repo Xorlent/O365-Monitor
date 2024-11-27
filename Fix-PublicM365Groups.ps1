@@ -1,9 +1,9 @@
-﻿$ConfigFile = $PWD.Path + '\O365Monitor-Config.xml'
+﻿$ConfigFile = "$PSScriptRoot\O365Monitor-Config.xml"
 $xml = New-Object System.Xml.XmlDocument
 $xml.Load($ConfigFile)
 $ConfigParams = $xml.SelectSingleNode("//o365app")
 
-$LogFile = $PWD.Path + '\O365Montior-PublicGroups.csv'
+$LogFile = "$PSScriptRoot\O365Montior-PublicGroups.csv"
 
 # Initialize configuration variables from config xml file
 $TenantID = $ConfigParams.SelectSingleNode("tenantid").InnerText
