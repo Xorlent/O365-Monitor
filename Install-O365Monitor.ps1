@@ -22,7 +22,7 @@ Param(
    [Switch]$Force
 )
 
-$ConfigFile = $PWD.Path + '\O365Monitor-Config.xml'
+$ConfigFile = "$PSScriptRoot\O365Monitor-Config.xml"
 $CommonName = 'O365Monitor'
 $StartDate = (Get-Date).ToString("yyyy-MM-dd")
 $EndDate = (Get-Date).AddDays(385).ToString("yyyy-MM-dd")
@@ -244,7 +244,7 @@ Disconnect-MgGraph | Out-Null
 
 # If the config file exists, rename it first.
 if (Test-Path -Path $ConfigFile -PathType Leaf){
-    Remove-Item -Path ".\$ConfigFile.bak" -Force | Out-Null
+    Remove-Item -Path "$ConfigFile.bak" -Force | Out-Null
     Rename-Item -Path $ConfigFile -NewName "$ConfigFile.bak"
     }
 
