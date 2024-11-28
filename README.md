@@ -4,6 +4,8 @@ Office365 Hygiene and Account Monitoring Scripts
 ### Installation Prerequisites
   - An Office 365 account with an administrative role that has access to create and edit Enterprise Apps
     - Note: The setup routine creates an Enterprise App with the absolute minimum (and read-only) rights to your O365 environment
+  - The Microsoft Graph Command Line Tools Enterprise App should be temporarily enabled and assigned to the Office 365 administrative account that will be used to install O365 Monitor
+    - Once the installation is complete, the Microsoft Graph Command Line Tools Enterprise App should be disabled
   - Administrative access on a Windows computer
 
 ### Setup
