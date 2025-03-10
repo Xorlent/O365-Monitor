@@ -34,12 +34,13 @@ foreach ($User in $UserList)
     $UserEmail = $User.UserPrincipalName
     $LastLogin = Get-MgUser -UserId $UserID -Property 'SignInActivity'
     Write-Host -NoNewLine "."
-    if($LastLogin.SignInActivity.LastSignInDateTime -lt (Get-Date).AddDays(-45)){
+    if($LastLogin.SignInActivity.LastSignInDateTime -lt (Get-Date).AddDays(-45) -and $User.CreatedDateTime -lt (Get-Date).AddDays(-60)){
         $Entry = '"' + $LastLogin.SignInActivity.LastSignInDateTime + '","' + $UserName + '","' + $UserEmail + '"'
         Add-Content $LogFile $Entry
         Write-Host -NoNewLine "!"
         $NotificationFlag++
     }
+    Start-Sleep -Seconds 1.5 # Throttle sign-in activity API requests
 }
 
 if($NotificationFlag){
